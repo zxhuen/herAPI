@@ -34,5 +34,7 @@ def add_photo_services(db: Session, name: str, photo: bytes):
     return person
 
 
-def load_photos_services():
-    print()
+def load_photos_services(db: Session):
+    photos = db.query(Photo).order_by(Photo.created_at.desc()).all()
+
+    return photos
