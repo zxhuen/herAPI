@@ -23,6 +23,8 @@ def add_photo(
     photo: UploadFile = File(...),
     db: Session = Depends(get_db),
 ):
+    return {"forbidden"}
+
     photo_bytes = photo.file.read()
 
     return add_photo_services(db, name, photo_bytes)
