@@ -17,4 +17,4 @@ pytest
 slowapi
 rich
 
-pip install python-multipart
+python-multipart
