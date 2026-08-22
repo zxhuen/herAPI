@@ -9,7 +9,8 @@ from app.services import (
     delete_person_services,
 )
 from app.core.limiter import limiter
-from forher.app.services.Photo_Services import add_photo_services, load_photos_services
+from app.services.Photo_Services import add_photo_services, load_photos_services
+from app.schemas.Photos import PhotoResponse
 
 router = APIRouter(prefix="/Photo", tags=["Photo"])
 
@@ -27,7 +28,7 @@ def add_photo(
     return add_photo_services(db, name, photo_bytes)
 
 
-@router.get("/load-photo", response_model=list[PersonResponse])
+@router.get("/load-photo", response_model=list[PhotoResponse])
 @limiter.limit("10/minute")
 def load_photo(request: Request, db: Session = Depends(get_db)):
     return load_photos_services(db)

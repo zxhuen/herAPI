@@ -4,7 +4,7 @@ from app.schemas import PersonCreate
 from fastapi import HTTPException
 import logging
 
-from forher.app.schemas.Photos import PhotoCreate
+from app.schemas.Photos import PhotoCreate
 from app.core.supabase_client import supabase
 from uuid import uuid4
 from app.models.Photos import Photo
@@ -35,6 +35,6 @@ def add_photo_services(db: Session, name: str, photo: bytes):
 
 
 def load_photos_services(db: Session):
-    photos = db.query(Photo).order_by(Photo.created_at.desc()).all()
+    photos = db.query(Photo).order_by(Photo.created_at.asc()).all()
 
     return photos
